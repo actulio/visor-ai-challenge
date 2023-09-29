@@ -1,9 +1,10 @@
 import OpenAI from 'openai';
 import { MessageModel } from '../models/message';
+import { IMessageService } from '../interfaces/IMessageService';
 
 const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API_KEY });
 
-class MessageService {
+class MessageService implements IMessageService {
   public async saveMessage(message: string, userId: string, isResponse: boolean) {
     await MessageModel.create({ body: message, userId, isResponse, date: new Date() });
   }

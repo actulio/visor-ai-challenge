@@ -1,10 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { UserModel } from '../models/user';
+import { IAuthService } from '../interfaces/IAuthService';
 
 const SALT_ROUNDS = 10;
 
-class AuthService {
+class AuthService implements IAuthService {
   public async register(email: string, name: string, password: string) {
     const userExists = await UserModel.findOne({ email });
     if (userExists) throw new Error('Email already in use');

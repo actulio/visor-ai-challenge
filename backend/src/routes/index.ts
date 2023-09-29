@@ -8,10 +8,6 @@ import MatchingUserIdMiddleware from '../middleware/MatchingIdMiddleware';
 
 const routes = express.Router();
 
-routes.get('/', () => {
-  console.log('main');
-});
-
 routes.post('/login', validate(loginReqSchema), AuthController.login);
 routes.post('/register', validate(registerReqSchema), AuthController.register);
 routes.post(
