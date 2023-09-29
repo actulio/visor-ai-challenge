@@ -24,7 +24,7 @@ class AuthService {
         expiresIn: '24h',
       }
     );
-    return token;
+    return { id: user.id, name: user.name, email: user.email, token };
   }
 
   public verifyToken(token: string) {

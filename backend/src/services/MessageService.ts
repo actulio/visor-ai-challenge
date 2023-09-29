@@ -18,7 +18,15 @@ class MessageService {
     return chatCompletion.choices[0].message.content;
   }
 
-  public async getMessages() {}
+  public async getMessages(userId: string, pageNumber: number, limit: number) {
+    const total = await MessageModel.countDocuments();
+    const messages = await MessageModel.find({ userId })
+      .sort({ date: -1 })
+      .skip(pageNumber * limit)
+      .limit(limit)
+      .exec();
+    return { total, messages };
+  }
 }
 
 export default MessageService;

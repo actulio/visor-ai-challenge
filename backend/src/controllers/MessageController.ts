@@ -9,15 +9,9 @@ export async function getMessages(req: Request, res: Response) {
     const userId = req.params.user_id;
     const query = req.query as { page: string; limit: string };
     const pageNumber = parseInt(query.page) || 0;
-    const limit = parseInt(query.limit) || 3;
-    const total = await MessageModel.countDocuments();
-    const messages = await MessageModel.find({ userId })
-      .sort({ date: -1 })
-      .skip(pageNumber * limit)
-      .limit(limit)
-      .exec();
-
-    res.status(200).json({ total, messages });
+    const limit = parseInt(query.limit) || 10;
+    const response = await messageService.getMessages(userId, pageNumber, limit);
+    res.status(200).json(response);
   } catch (error: any) {
     console.log(error);
     res.status(500).json({ error: error?.message || error });
@@ -26,8 +20,8 @@ export async function getMessages(req: Request, res: Response) {
 
 export async function requestResponse(req: Request, res: Response) {
   try {
-    const { prompt } = req.body;
     const { user_id } = req.params;
+    const { prompt } = req.body;
     await messageService.saveMessage(prompt, user_id, false);
     const response = await messageService.requestResponseFromPrompt(prompt);
     if (!response) {
@@ -37,6 +31,6 @@ export async function requestResponse(req: Request, res: Response) {
     res.status(200).json({ response });
   } catch (error: any) {
     console.log(error);
-    res.status(500).json({ error: error?.message || error });
+    res.status(401).json({ error: error?.message || error });
   }
 }

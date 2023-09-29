@@ -10,17 +10,17 @@ export async function register(req: Request, res: Response) {
     res.status(201).json(user);
   } catch (error: any) {
     console.log(error);
-    res.status(500).json({ error: error?.message || error });
+    res.status(401).json({ error: error?.message || error });
   }
 }
 
 export async function login(req: Request, res: Response) {
   try {
     const { email, password } = req.body;
-    const jwt = await authService.login(email, password);
-    res.status(200).send(jwt);
+    const loggedData = await authService.login(email, password);
+    res.status(200).json(loggedData);
   } catch (error: any) {
     console.log(error);
-    res.status(500).json({ error: error?.message || error });
+    res.status(401).json({ error: error?.message || error });
   }
 }
