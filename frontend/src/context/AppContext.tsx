@@ -20,8 +20,8 @@ const AppContextProvider: FC<{ children: ReactNode }> = ({ children }) => {
   useEffect(() => {
     const user = checkAuth();
     if (user) setUserData({ id: user.user_id, name: user.name, email: user.email });
-    console.log('alo amor');
   }, []);
+
   return (
     <AppContext.Provider
       value={{

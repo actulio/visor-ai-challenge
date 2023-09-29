@@ -70,7 +70,6 @@ const Chat = () => {
     navigate('/login');
   };
 
-  console.log(totalMessages, messages.length, messages);
   const loadMore = async () => {
     setLoadingMore(true);
     const result = await messageService.getMessages(userData.id, page + 1);

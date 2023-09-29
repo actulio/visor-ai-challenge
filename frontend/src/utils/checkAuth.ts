@@ -6,7 +6,6 @@ export const checkAuth = () => {
   const decodedToken = jwt<Omit<User, 'id'> & { user_id: string; exp: number }>(
     getLocalStorage('token')
   );
-  console.log(decodedToken);
 
   if (
     !decodedToken ||
