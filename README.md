@@ -1,8 +1,8 @@
 # visor-ai-challenge
 
-To run the frontend, as well the backend, go to their respective folders and do: `npm run dev`.
+To run the frontend, as well the backend, go to their respective folders and do: `npm install` then `npm run dev`.
 
-Make sure to have the required environment variables. You can see examples in the .env.example files. For the OpenAi api key and the mongo uri, check github's action variables tab. I added them there for simplicity, but I know that adding them as variables is not the best way to do it.
+Make sure to have the required environment variables. You can see examples in the .env.example files. For the OpenAi api key and the mongo uri, check github's action variables tab. I added them there for simplicity, but I know that adding them as variables is not the best way to do it. **Node version should be at least 16.**
 
 ### Some design choices
 
