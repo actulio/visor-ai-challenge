@@ -11,7 +11,7 @@ export function validateEnvVars() {
     requireEnv('MONGO_URI');
     requireEnv('JWT_SECRET');
     requireEnv('CRYPTO_PASSWORD');
-    requireEnv('OPEN_AI_API_KEY');
+    requireEnv('OPENAI_API_KEY');
   } catch (err) {
     console.log(err);
     process.exit(1);

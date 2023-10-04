@@ -2,7 +2,7 @@ import OpenAI from 'openai';
 import { MessageModel } from '../models/message';
 import { IMessageService } from '../interfaces/IMessageService';
 
-const openai = new OpenAI({ apiKey: process.env.OPEN_AI_API_KEY });
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 class MessageService implements IMessageService {
   public async saveMessage(message: string, userId: string, isResponse: boolean) {
