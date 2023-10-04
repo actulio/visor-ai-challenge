@@ -20,7 +20,7 @@ class MessageService implements IMessageService {
   }
 
   public async getMessages(userId: string, pageNumber: number, limit: number) {
-    const total = await MessageModel.countDocuments();
+    const total = await MessageModel.countDocuments({ userId });
     const messages = await MessageModel.find({ userId })
       .sort({ date: -1 })
       .skip(pageNumber * limit)
